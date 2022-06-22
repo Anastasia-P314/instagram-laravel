@@ -23,7 +23,7 @@ class Profile extends Model
 
     public function profileImage(){
         
-        return ($this->image) ? $this->image : '/storage/profile/No_image.png';
+        return ($this->image) ? $this->image : public_path('/storage/profile/No_image.png');
 
     }
 }
