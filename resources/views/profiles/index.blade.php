@@ -11,7 +11,7 @@
                 <div class="d-flex pb-3">
                     <h4 class="w-100">{{ $user->username }}</h4>
      <!--                <button class="btn btn-primary ms-4">Follow</button> -->
-                    <follow-button user-id="{{$user->id}}" follows="{{$follows}}"></follow-button>
+                    <follow-button user-id="{{$user->id}}" follows="{{$follows}}" auth-user="{{$authUser}}"></follow-button>
                 </div>
 
                 @can('update', $user->profile)

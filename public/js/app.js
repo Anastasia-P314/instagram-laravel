@@ -5376,7 +5376,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ['userId', 'follows'],
+  props: ['userId', 'follows', 'authUser'],
   mounted: function mounted() {
     console.log('Component mounted.');
   },
@@ -5402,6 +5402,9 @@ __webpack_require__.r(__webpack_exports__);
   computed: {
     buttonText: function buttonText() {
       return this.status ? "Unfollow" : "Follow";
+    },
+    hidebutton: function hidebutton() {
+      return this.userId != this.authUser;
     }
   }
 });
@@ -28016,11 +28019,13 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
-    _c("button", {
-      staticClass: "btn btn-primary ms-3",
-      domProps: { textContent: _vm._s(_vm.buttonText) },
-      on: { click: _vm.followUser },
-    }),
+    _vm.hidebutton
+      ? _c("button", {
+          staticClass: "btn btn-primary ms-3",
+          domProps: { textContent: _vm._s(_vm.buttonText) },
+          on: { click: _vm.followUser },
+        })
+      : _vm._e(),
   ])
 }
 var staticRenderFns = []
