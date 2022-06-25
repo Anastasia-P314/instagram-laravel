@@ -12,7 +12,7 @@ class ProfilesController extends Controller
     {
         $follows = (auth()->user()) ? auth()->user()->following->contains($user->id) : false;
 
-        $authUser = auth()->user()->id;
+        $authUser = (auth()->user()) ? auth()->user()->id : false;
         $postsCount = $user->posts->count();
         $followersCount = $user->profile->followers->count();
         $followingCount = $user->following->count();
