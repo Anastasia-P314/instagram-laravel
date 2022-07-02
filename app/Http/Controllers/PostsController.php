@@ -23,7 +23,7 @@ class PostsController extends Controller
 
         //$posts = Post::whereIn('user_id', $users)->with('user')->latest()->paginate(2);
 
-        $posts = !empty($users->items) ? Post::whereIn('user_id', $users)->with('user')->latest()->paginate(2) : Post::whereIn('id', [Post::count(), Post::count()-1])->latest()->paginate(2);
+        $posts = count($users)>0 ? Post::whereIn('user_id', $users)->with('user')->latest()->paginate(2) : Post::whereIn('id', [Post::count(), Post::count()-1])->latest()->paginate(2);
 
         return view('posts.index', compact('posts'));
     }
