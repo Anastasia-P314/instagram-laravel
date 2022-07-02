@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
 
@@ -44,7 +45,15 @@ class ProfilesController extends Controller
             $image = Image::make(public_path("$image_path"))->fit(1000, 1000);
             $image->save();
 
-            $image_path = ['image' => $image_path];
+            //$image_path = ['image' => $image_path];
+
+
+            $uploadedFileUrl = Cloudinary::upload(request('image')->getRealPath(), 
+            ["folder" => "profile", 
+            "width" => 1000, "height" => 1000, 'crop' => 'fill']
+            )->getSecurePath();
+
+            $image_path = ['image' => $uploadedFileUrl];
         }
 
         auth()->user()->profile()->update(array_merge(

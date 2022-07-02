@@ -23,7 +23,9 @@ class Profile extends Model
 
     public function profileImage(){
         
-        return ($this->image) ? $this->image : '/storage/profile/No_image.png';
+        //return ($this->image) ? $this->image : '/storage/profile/No_image.png';
+        return ($this->image) ? $this->image : 'https://res.cloudinary.com/dmluuycmo/image/upload/v1656786517/profile/No_image_z8gjht.png';
+
 
     }
 }
